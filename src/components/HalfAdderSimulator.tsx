@@ -36,10 +36,10 @@ export function HalfAdderSimulator({ language, speed }: HalfAdderSimulatorProps)
   const binaryVal = `${carry ? '1' : '0'}${sum ? '1' : '0'}`;
 
   return (
-    <Card className="border-sky-500/30 overflow-hidden">
+    <Card className="border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
       <div className="bg-gradient-to-r from-sky-500/10 via-cyan-500/10 to-transparent p-5 border-b border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-2.5">
-          <div className="p-2.5 rounded-xl bg-cyan-500/20 text-cyan-500 dark:text-cyan-300">
+          <div className="p-2.5 rounded-xl bg-cyan-500/15 text-cyan-600 dark:text-cyan-300">
             <Cpu className="w-5 h-5" />
           </div>
           <div>
@@ -64,13 +64,13 @@ export function HalfAdderSimulator({ language, speed }: HalfAdderSimulatorProps)
           <span>{inputB ? '1' : '0'}</span>
           <span className="text-slate-500">=</span>
           <strong className="text-amber-400 text-base">{binaryVal}₂</strong>
-          <span className="text-xs text-slate-400">({decimalVal} in decimal)</span>
+          <span className="text-xs text-slate-400">({decimalVal} {language === 'en' ? 'in decimal' : 'দশমিকে'})</span>
         </div>
       </div>
 
       <CardContent className="p-4 sm:p-6 space-y-5">
         {/* SVG Half Adder Circuit */}
-        <div className="relative w-full overflow-hidden rounded-2xl border border-slate-800 shadow-2xl bg-[#060913] select-none">
+        <div className="relative w-full overflow-hidden rounded-2xl border border-slate-300 dark:border-slate-800 shadow-md dark:shadow-2xl bg-[#080d1a] select-none">
           <svg
             viewBox="0 0 960 480"
             className="w-full h-auto max-h-[500px] block"
@@ -97,7 +97,7 @@ export function HalfAdderSimulator({ language, speed }: HalfAdderSimulatorProps)
             {/* Switches */}
             <InteractiveSwitch
               id="ha-switch-a"
-              label="BIT A"
+              label={language === 'en' ? 'BIT A' : 'বিট A'}
               state={inputA}
               onToggle={toggleA}
               x={130}
@@ -105,7 +105,7 @@ export function HalfAdderSimulator({ language, speed }: HalfAdderSimulatorProps)
             />
             <InteractiveSwitch
               id="ha-switch-b"
-              label="BIT B"
+              label={language === 'en' ? 'BIT B' : 'বিট B'}
               state={inputB}
               onToggle={toggleB}
               x={130}
@@ -208,7 +208,7 @@ export function HalfAdderSimulator({ language, speed }: HalfAdderSimulatorProps)
             />
             {/* Label for SUM */}
             <text x="800" y="55" textAnchor="middle" className="fill-sky-400 font-bold text-xs font-mono">
-              SUM BIT (S = A ⊕ B)
+              {language === 'en' ? 'SUM BIT (S = A ⊕ B)' : 'যোগফল বিট (S = A ⊕ B)'}
             </text>
 
             {/* CARRY Bulb */}
@@ -219,7 +219,7 @@ export function HalfAdderSimulator({ language, speed }: HalfAdderSimulatorProps)
             />
             {/* Label for CARRY */}
             <text x="800" y="255" textAnchor="middle" className="fill-amber-400 font-bold text-xs font-mono">
-              CARRY BIT (C = A · B)
+              {language === 'en' ? 'CARRY BIT (C = A · B)' : 'হাতে থাকা বিট (C = A · B)'}
             </text>
           </svg>
         </div>
@@ -241,11 +241,11 @@ export function HalfAdderSimulator({ language, speed }: HalfAdderSimulatorProps)
             <h5 className="font-bold text-sm text-slate-900 dark:text-white mb-2">
               {language === 'en' ? 'Half Adder Truth Table' : 'হাফ অ্যাডার সত্যক সারণী'}
             </h5>
-            <div className="grid grid-cols-4 text-center text-xs font-mono gap-1 border-b pb-1 font-semibold text-slate-500">
+            <div className="grid grid-cols-4 text-center text-xs font-mono gap-1 border-b border-slate-200 dark:border-slate-700 pb-1 font-semibold text-slate-500 dark:text-slate-400">
               <div>A</div>
               <div>B</div>
-              <div className="text-sky-500">Sum (S)</div>
-              <div className="text-amber-500">Carry (C)</div>
+              <div className="text-sky-600 dark:text-sky-400">{language === 'en' ? 'Sum (S)' : 'যোগফল (S)'}</div>
+              <div className="text-amber-600 dark:text-amber-400">{language === 'en' ? 'Carry (C)' : 'হাতে থাকা (C)'}</div>
             </div>
             {[
               [false, false, false, false],

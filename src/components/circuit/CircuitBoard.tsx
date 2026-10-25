@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { GateType } from '@/types/logic';
+import { GateType, Language } from '@/types/logic';
 import { InteractiveSwitch } from './InteractiveSwitch';
 import { LogicGateSVG } from './LogicGateSVG';
 import { ElectricWire } from './ElectricWire';
@@ -17,6 +17,7 @@ interface CircuitBoardProps {
   onToggleB: () => void;
   onGateClick?: () => void;
   activeStepElement?: 'switches' | 'wire-in' | 'gate' | 'wire-out' | 'bulb' | null;
+  language?: Language;
 }
 
 export function CircuitBoard({
@@ -29,6 +30,7 @@ export function CircuitBoard({
   onToggleB,
   onGateClick,
   activeStepElement,
+  language = 'bn',
 }: CircuitBoardProps) {
   const isSingleInput = gateType === 'NOT';
   const isXorOrXnor = gateType === 'XOR' || gateType === 'XNOR';
@@ -79,25 +81,27 @@ export function CircuitBoard({
   const highlightBulb = activeStepElement === 'bulb';
 
   return (
-    <div className="relative w-full overflow-hidden rounded-2xl border border-slate-700/60 shadow-2xl bg-[#070b14] select-none">
+    <div className="relative w-full overflow-hidden rounded-2xl border border-slate-300 dark:border-slate-800 shadow-md dark:shadow-2xl bg-[#080d1a] select-none">
       {/* Circuit Board Header HUD */}
       <div className="absolute top-3 left-4 right-4 z-10 flex items-center justify-between text-xs font-mono text-slate-400 pointer-events-none">
         <div className="flex items-center gap-3">
           <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-slate-900/90 border border-slate-700/60 shadow">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-slate-300 font-semibold tracking-wider">PWR: +5.0V ON</span>
+            <span className="text-slate-300 font-semibold tracking-wider">
+              {language === 'en' ? 'PWR: +5.0V ON' : 'পাওয়ার: +৫.০V চালু'}
+            </span>
           </span>
           <span className="hidden sm:inline-flex items-center gap-1 text-slate-400">
-            CHIP: <strong className="text-sky-400">{gateType} LOGIC</strong>
+            {language === 'en' ? 'CHIP:' : 'আইসি:'} <strong className="text-sky-400">{gateType} LOGIC</strong>
           </span>
         </div>
 
         <div className="flex items-center gap-3">
           <span className="px-2.5 py-1 rounded-md bg-slate-900/90 border border-slate-700/60">
-            FREQ: <strong className="text-cyan-400 font-bold">{speed}x</strong>
+            {language === 'en' ? 'FREQ:' : 'গতি:'} <strong className="text-cyan-400 font-bold">{speed}x</strong>
           </span>
           <span className="hidden sm:inline-block text-[11px] text-slate-500">
-            INTERACTIVE SCHEMATIC
+            {language === 'en' ? 'INTERACTIVE SCHEMATIC' : 'ইন্টারেক্টিভ সার্কিট'}
           </span>
         </div>
       </div>
@@ -283,7 +287,7 @@ export function CircuitBoard({
         {/* Input Switches */}
         <InteractiveSwitch
           id="switch-a"
-          label={isSingleInput ? 'INPUT A' : 'INPUT A'}
+          label={language === 'en' ? 'INPUT A' : 'ইনপুট A'}
           state={inputA}
           onToggle={onToggleA}
           x={switchAPos.x}
@@ -293,7 +297,7 @@ export function CircuitBoard({
         {!isSingleInput && (
           <InteractiveSwitch
             id="switch-b"
-            label="INPUT B"
+            label={language === 'en' ? 'INPUT B' : 'ইনপুট B'}
             state={inputB}
             onToggle={onToggleB}
             x={switchBPos.x}

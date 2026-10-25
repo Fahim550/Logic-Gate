@@ -13,7 +13,7 @@ import {
   ChevronLeft,
   RotateCcw,
   Footprints,
-  Sparkles,
+  Activity,
 } from 'lucide-react';
 
 interface StepByStepTracerProps {
@@ -90,11 +90,11 @@ export function StepByStepTracer({
   };
 
   return (
-    <div className="w-full rounded-2xl border border-sky-500/30 bg-slate-900/90 shadow-xl p-5 backdrop-blur-md text-white">
+    <div className="w-full rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm p-5 text-slate-900 dark:text-white transition-colors">
       {/* Header */}
-      <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-800">
+      <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-200 dark:border-slate-800">
         <div className="flex items-center gap-2.5">
-          <div className="p-2 rounded-xl bg-sky-500/20 text-sky-400">
+          <div className="p-2 rounded-xl bg-sky-500/15 text-sky-600 dark:text-sky-400">
             <Footprints className="w-5 h-5" />
           </div>
           <div>
@@ -104,7 +104,7 @@ export function StepByStepTracer({
                 {language === 'en' ? `Step ${currentStep.step} of 5` : `ধাপ ${currentStep.step}/৫`}
               </Badge>
             </h4>
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-slate-500 dark:text-slate-400">
               {language === 'en'
                 ? 'Follow electric potential from switches to logic processing to load'
                 : 'সুইচ থেকে শুরু করে গেটের ভেতরে ও বাল্ব পর্যন্ত বিদ্যুতের গতিপথ দেখো'}
@@ -135,7 +135,7 @@ export function StepByStepTracer({
 
           <Button
             size="sm"
-            variant={isPlaying ? 'destructive' : 'glow'}
+            variant={isPlaying ? 'destructive' : 'default'}
             onClick={togglePlay}
             className="min-w-24 font-bold"
           >
@@ -176,21 +176,23 @@ export function StepByStepTracer({
                 sound.playClick();
                 setCurrentStepIndex(idx);
               }}
-              className={`p-2 rounded-xl text-left transition-all ${
+              className={`p-2.5 rounded-xl text-left transition-all cursor-pointer ${
                 isCurrent
-                  ? 'bg-sky-500/25 border-2 border-sky-400 shadow-md shadow-sky-500/20'
+                  ? 'bg-sky-50 dark:bg-sky-950/40 border-2 border-sky-500 shadow-sm'
                   : isDone
-                  ? 'bg-slate-800 border border-slate-700 opacity-80'
-                  : 'bg-slate-900 border border-slate-800 opacity-40 hover:opacity-70'
+                  ? 'bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700'
+                  : 'bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 opacity-60 hover:opacity-100'
               }`}
             >
               <div className="flex items-center justify-between text-[11px] font-mono mb-1">
-                <span className={isCurrent ? 'text-sky-300 font-bold' : 'text-slate-400'}>
+                <span className={isCurrent ? 'text-sky-600 dark:text-sky-300 font-bold' : 'text-slate-400'}>
                   0{s.step}
                 </span>
-                {isCurrent && <Sparkles className="w-3 h-3 text-cyan-400 animate-spin" />}
+                {isCurrent && <span className="w-2 h-2 rounded-full bg-sky-500 animate-pulse" />}
               </div>
-              <span className="block text-xs font-semibold truncate text-slate-200">
+              <span className={`block text-xs font-semibold truncate ${
+                isCurrent ? 'text-sky-950 dark:text-white font-bold' : 'text-slate-700 dark:text-slate-300'
+              }`}>
                 {s.title[language].split('.')[1] || s.title[language]}
               </span>
             </button>
@@ -199,11 +201,11 @@ export function StepByStepTracer({
       </div>
 
       {/* Active Step Content */}
-      <div className="p-4 rounded-xl bg-slate-800/80 border border-slate-700 space-y-2">
-        <h5 className="text-sm font-bold text-cyan-300 flex items-center gap-2">
+      <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 space-y-1.5">
+        <h5 className="text-sm font-bold text-sky-700 dark:text-cyan-300 flex items-center gap-2">
           <span>{currentStep.title[language]}</span>
         </h5>
-        <p className="text-sm text-slate-300 leading-relaxed">
+        <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
           {currentStep.description[language]}
         </p>
       </div>

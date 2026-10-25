@@ -60,22 +60,22 @@ export const GATE_REGISTRY: Record<GateType, GateInfo> = {
     type: 'AND',
     name: {
       en: 'AND Gate',
-      bn: 'অ্যান্ড গেট (AND Gate)',
+      bn: 'AND গেট',
     },
     symbolName: 'Conjunction (·)',
     expression: 'Y = A · B',
     booleanEquation: 'Y = A AND B',
     shortDesc: {
       en: 'Outputs HIGH (1) only when ALL inputs are HIGH (1).',
-      bn: 'শুধুমাত্র তখনই আউটপুট ১ হবে যখন সব ইনপুট ১ (HIGH) হবে।',
+      bn: 'উভয় ইনপুট ১ (HIGH) হলেই কেবল আউটপুট ১ হবে।',
     },
     detailedDesc: {
       en: 'The AND gate implements logical conjunction. If any input is 0 (LOW), the output drops to 0 immediately. It acts like two electrical switches wired in series.',
-      bn: 'অ্যান্ড গেট যৌক্তিক গুণ নির্দেশ করে। যেকোনো একটি ইনপুট ০ হলে আউটপুট সঙ্গে সঙ্গে ০ হয়ে যায়। এটি শ্রেণিবদ্ধভাবে (series) যুক্ত দুটি সুইচের মতো কাজ করে।',
+      bn: 'AND গেট যৌক্তিক গুণ নির্দেশ করে। যেকোনো একটি ইনপুট ০ হলে আউটপুট সঙ্গে সঙ্গে ০ হয়ে যায়। এটি শ্রেণিবদ্ধভাবে (series) যুক্ত দুটি সুইচের মতো কাজ করে।',
     },
     rule: {
       en: 'Output is 1 if and only if both Input A = 1 and Input B = 1.',
-      bn: 'আউটপুট ১ হবে শুধুমাত্র এবং শুধুমাত্র যদি ইনপুট A = ১ এবং ইনপুট B = ১ উভয়ই থাকে।',
+      bn: 'আউটপুট ১ হবে শুধুমাত্র যখন ইনপুট A = ১ এবং ইনপুট B = ১ উভয়ই থাকে।',
     },
     realLifeExample: {
       title: {
@@ -87,8 +87,8 @@ export const GATE_REGISTRY: Record<GateType, GateInfo> = {
         bn: 'একটি নিরাপত্তা ভল্ট খুলতে ম্যানেজারের চাবি এবং সিকিউরিটি অফিসারের চাবি উভয়ই একসাথে অন করতে হয়।',
       },
       scenario: {
-        en: 'Key A (Manager) = 1 AND Key B (Guard) = 1 ➔ Vault Door Opens (1)',
-        bn: 'চাবি A (ম্যানেজার) = ১ এবং চাবি B (গার্ড) = ১ ➔ ভল্ট দরজা খোলে (১)',
+        en: 'Key A (Manager) = 1 AND Key B (Guard) = 1 → Vault Door Opens (1)',
+        bn: 'চাবি A (ম্যানেজার) = ১ এবং চাবি B (গার্ড) = ১ → ভল্ট দরজা খোলে (১)',
       },
     },
     icCode: '7408 (Quad 2-Input AND Gate)',
@@ -98,7 +98,7 @@ export const GATE_REGISTRY: Record<GateType, GateInfo> = {
     type: 'OR',
     name: {
       en: 'OR Gate',
-      bn: 'অর গেট (OR Gate)',
+      bn: 'OR গেট',
     },
     symbolName: 'Disjunction (+)',
     expression: 'Y = A + B',
@@ -109,7 +109,7 @@ export const GATE_REGISTRY: Record<GateType, GateInfo> = {
     },
     detailedDesc: {
       en: 'The OR gate performs logical disjunction. The output is 0 only when both inputs are 0. In an electrical circuit, it is equivalent to two switches wired in parallel.',
-      bn: 'অর গেট যৌক্তিক যোগ নির্দেশ করে। কেবল যখন দুটি ইনপুটই ০ থাকে, তখনই আউটপুট ০ হয়। এটি সমান্তরালভাবে (parallel) যুক্ত দুটি সুইচের সমতুল্য।',
+      bn: 'OR গেট যৌক্তিক যোগ নির্দেশ করে। কেবল যখন দুটি ইনপুটই ০ থাকে, তখনই আউটপুট ০ হয়। এটি সমান্তরালভাবে (parallel) যুক্ত দুটি সুইচের সমতুল্য।',
     },
     rule: {
       en: 'Output is 1 if Input A = 1 OR Input B = 1 (or both). Output is 0 only when both inputs are 0.',
@@ -125,8 +125,8 @@ export const GATE_REGISTRY: Record<GateType, GateInfo> = {
         bn: 'একটি ঘরে দুটি দরজা আছে: দরজা ১-এর সুইচ চাপলে অথবা দরজা ২-এর সুইচ চাপলে ঘরের বাতি জ্বলে ওঠে।',
       },
       scenario: {
-        en: 'Switch A = 1 OR Switch B = 1 ➔ Room Lamp Turns ON (1)',
-        bn: 'সুইচ A = ১ অথবা সুইচ B = ১ ➔ রুমের বাতি জ্বলে (১)',
+        en: 'Switch A = 1 OR Switch B = 1 → Room Lamp Turns ON (1)',
+        bn: 'সুইচ A = ১ অথবা সুইচ B = ১ → রুমের বাতি জ্বলে (১)',
       },
     },
     icCode: '7432 (Quad 2-Input OR Gate)',
@@ -136,7 +136,7 @@ export const GATE_REGISTRY: Record<GateType, GateInfo> = {
     type: 'NOT',
     name: {
       en: 'NOT Gate (Inverter)',
-      bn: 'নট গেট (ইনভার্টার)',
+      bn: 'NOT গেট (ইনভার্টার)',
     },
     symbolName: 'Negation (¯)',
     expression: 'Y = A̅',
@@ -147,7 +147,7 @@ export const GATE_REGISTRY: Record<GateType, GateInfo> = {
     },
     detailedDesc: {
       en: 'The NOT gate, or inverter, has only one input and one output. It reverses the logic state: HIGH becomes LOW, and LOW becomes HIGH. Represented by a triangle with an inversion bubble.',
-      bn: 'নট গেট বা ইনভার্টারের কেবল একটি ইনপুট এবং একটি আউটপুট থাকে। এটি লজিক মান উল্টে দেয়: HIGH কে LOW এবং LOW কে HIGH করে।',
+      bn: 'NOT গেট বা ইনভার্টারের কেবল একটি ইনপুট এবং একটি আউটপুট থাকে। এটি লজিক মান উল্টে দেয়: HIGH কে LOW এবং LOW কে HIGH করে।',
     },
     rule: {
       en: 'Output is the exact opposite of the input. If A = 0, Y = 1; If A = 1, Y = 0.',
@@ -163,8 +163,8 @@ export const GATE_REGISTRY: Record<GateType, GateInfo> = {
         bn: 'দিনের বেলা আলোক সেন্সর সূর্যের আলো (১) পেলে সড়কবাতি বন্ধ (০) থাকে। অন্ধকার হলে (০) সড়কবাতি নিজে থেকেই জ্বলে (১) ওঠে।',
       },
       scenario: {
-        en: 'Sunlight Detected (1) ➔ Lamp OFF (0) | Darkness (0) ➔ Lamp ON (1)',
-        bn: 'সূর্যের আলো (১) ➔ বাতি বন্ধ (০) | অন্ধকার (০) ➔ বাতি চালু (১)',
+        en: 'Sunlight Detected (1) → Lamp OFF (0) | Darkness (0) → Lamp ON (1)',
+        bn: 'সূর্যের আলো (১) → বাতি বন্ধ (০) | অন্ধকার (০) → বাতি চালু (১)',
       },
     },
     icCode: '7404 (Hex Inverter Gate)',
@@ -174,7 +174,7 @@ export const GATE_REGISTRY: Record<GateType, GateInfo> = {
     type: 'NAND',
     name: {
       en: 'NAND Gate',
-      bn: 'ন্যান্ড গেট (NAND Gate)',
+      bn: 'NAND গেট',
     },
     symbolName: 'NOT-AND (· + ¯)',
     expression: 'Y = (A · B)̅',
@@ -185,7 +185,7 @@ export const GATE_REGISTRY: Record<GateType, GateInfo> = {
     },
     detailedDesc: {
       en: 'The NAND gate is an AND gate followed by an inverter. It is a "Universal Gate" because any other logic gate (AND, OR, NOT, XOR) can be constructed using only NAND gates.',
-      bn: 'ন্যান্ড গেট হলো একটি অ্যান্ড গেটের পর একটি ইনভার্টারের সমন্বয়। এটি একটি "সার্বজনীন গেট" কারণ শুধুমাত্র ন্যান্ড গেট ব্যবহার করেই যেকোনো লজিক সার্কিট তৈরি করা সম্ভব।',
+      bn: 'NAND গেট হলো একটি অ্যান্ড গেটের পর একটি ইনভার্টারের সমন্বয়। এটি একটি "সার্বজনীন গেট" কারণ শুধুমাত্র NAND গেট ব্যবহার করেই যেকোনো লজিক সার্কিট তৈরি করা সম্ভব।',
     },
     rule: {
       en: 'Output is 1 in all cases, EXCEPT when both Input A = 1 and Input B = 1 (which outputs 0).',
@@ -201,8 +201,8 @@ export const GATE_REGISTRY: Record<GateType, GateInfo> = {
         bn: 'কারখানার একটি ভারী যন্ত্র চালু থাকে (১), যদি না একই সাথে অতিরিক্ত তাপমাত্রা (১) এবং অতিরিক্ত কম্পন (১) উভয় বিপত্তি ঘটে। দুটিই ঘটলে মেশিন বন্ধ (০) হয়।',
       },
       scenario: {
-        en: 'Both Danger Sensors Tripped (1 & 1) ➔ System Shuts Off (0)',
-        bn: 'উভয় বিপদ সংকেত ১ ও ১ ➔ পাওয়ার কাটডাউন বন্ধ (০)',
+        en: 'Both Danger Sensors Tripped (1 & 1) → System Shuts Off (0)',
+        bn: 'উভয় বিপদ সংকেত ১ ও ১ → পাওয়ার কাটডাউন বন্ধ (০)',
       },
     },
     icCode: '7400 (Quad 2-Input NAND Gate)',
@@ -213,7 +213,7 @@ export const GATE_REGISTRY: Record<GateType, GateInfo> = {
     type: 'NOR',
     name: {
       en: 'NOR Gate',
-      bn: 'নর গেট (NOR Gate)',
+      bn: 'NOR গেট',
     },
     symbolName: 'NOT-OR (+ + ¯)',
     expression: 'Y = (A + B)̅',
@@ -224,7 +224,7 @@ export const GATE_REGISTRY: Record<GateType, GateInfo> = {
     },
     detailedDesc: {
       en: 'The NOR gate combines an OR gate with an inverter. It is also a "Universal Gate". The output is 1 only when neither input A nor input B is high.',
-      bn: 'নর গেট হলো অর গেটের আউটপুটে একটি ইনভার্টার যুক্ত করা সার্কিট। এটিও একটি "সার্বজনীন গেট"। আউটপুট কেবল তখনই ১ হয় যখন কোনো ইনপুটই ১ নয়।',
+      bn: 'NOR গেট হলো অর গেটের আউটপুটে একটি ইনভার্টার যুক্ত করা সার্কিট। এটিও একটি "সার্বজনীন গেট"। আউটপুট কেবল তখনই ১ হয় যখন কোনো ইনপুটই ১ নয়।',
     },
     rule: {
       en: 'Output is 1 ONLY when both A = 0 and B = 0. If either input is 1, output immediately becomes 0.',
@@ -240,8 +240,8 @@ export const GATE_REGISTRY: Record<GateType, GateInfo> = {
         bn: 'গাড়ির "সব নিরাপদ" সবুজ বাতি জ্বলে থাকে (১) কেবল যখন বাম দরজা বন্ধ (০) এবং ডান দরজা বন্ধ (০)। যেকোনো একটি খুললেই (১) নিরাপদ বাতি নিভে যায় (০)।',
       },
       scenario: {
-        en: 'Door A closed (0) NOR Door B open (0) ➔ Safe Indicator Lit (1)',
-        bn: 'দরজা A বন্ধ (০) এবং দরজা B বন্ধ (০) ➔ নিরাপদ বাতি জ্বলে (১)',
+        en: 'Door A closed (0) NOR Door B open (0) → Safe Indicator Lit (1)',
+        bn: 'দরজা A বন্ধ (০) এবং দরজা B বন্ধ (০) → নিরাপদ বাতি জ্বলে (১)',
       },
     },
     icCode: '7402 (Quad 2-Input NOR Gate)',
@@ -251,8 +251,8 @@ export const GATE_REGISTRY: Record<GateType, GateInfo> = {
   XOR: {
     type: 'XOR',
     name: {
-      en: 'XOR Gate (Exclusive OR)',
-      bn: 'এক্সঅর গেট (এক্সক্লুসিভ অর)',
+      en: 'XOR Gate',
+      bn: 'XOR গেট',
     },
     symbolName: 'Exclusive Disjunction (⊕)',
     expression: 'Y = A ⊕ B',
@@ -263,7 +263,7 @@ export const GATE_REGISTRY: Record<GateType, GateInfo> = {
     },
     detailedDesc: {
       en: 'The Exclusive-OR gate outputs 1 if strictly one input is high, but not both. It is essential in digital adders (Half Adder, Full Adder) and parity checking.',
-      bn: 'এক্স-অর গেট আউটপুট ১ দেয় যখন কেবল একটি ইনপুট ১ থাকে, কিন্তু উভয়টি নয়। বাইনারি যোগ বা ক্যালকুলেটরের অ্যাডার সার্কিটে এটি অপরিহার্য।',
+      bn: 'XOR গেট আউটপুট ১ দেয় যখন কেবল একটি ইনপুট ১ থাকে, কিন্তু উভয়টি নয়। বাইনারি যোগ বা ক্যালকুলেটরের অ্যাডার সার্কিটে এটি অপরিহার্য।',
     },
     rule: {
       en: 'Output is 1 if inputs are unequal (0,1 or 1,0). Output is 0 if inputs are identical (0,0 or 1,1).',
@@ -279,8 +279,8 @@ export const GATE_REGISTRY: Record<GateType, GateInfo> = {
         bn: 'নিচতলার সুইচ বা ওপরতলার সুইচ যেকোনো একটি বদলালে লাইটের অবস্থা উল্টে যায়। এটি দিয়ে ওপর-নিচ থেকে লাইট নিয়ন্ত্রণ করা যায়।',
       },
       scenario: {
-        en: 'Switch A ≠ Switch B ➔ Light ON (1) | Switch A = Switch B ➔ Light OFF (0)',
-        bn: 'সুইচ A ≠ সুইচ B ➔ বাতি জ্বলে (১) | সুইচ A = সুইচ B ➔ বাতি বন্ধ (০)',
+        en: 'Switch A ≠ Switch B → Light ON (1) | Switch A = Switch B → Light OFF (0)',
+        bn: 'সুইচ A ≠ সুইচ B → বাতি জ্বলে (১) | সুইচ A = সুইচ B → বাতি বন্ধ (০)',
       },
     },
     icCode: '7486 (Quad 2-Input XOR Gate)',
@@ -289,8 +289,8 @@ export const GATE_REGISTRY: Record<GateType, GateInfo> = {
   XNOR: {
     type: 'XNOR',
     name: {
-      en: 'XNOR Gate (Equivalence)',
-      bn: 'এক্সনর গেট (ইকুইভ্যালেন্স গেট)',
+      en: 'XNOR Gate',
+      bn: 'XNOR গেট',
     },
     symbolName: 'Equivalence (⊙)',
     expression: 'Y = (A ⊕ B)̅',
@@ -301,7 +301,7 @@ export const GATE_REGISTRY: Record<GateType, GateInfo> = {
     },
     detailedDesc: {
       en: 'The XNOR gate is the complement of XOR. It outputs HIGH (1) when all inputs are equal. It is widely used in digital comparator circuits to detect if two bits match.',
-      bn: 'এক্সনর গেট হলো এক্সঅর গেটের বিপরীত। ইনপুটগুলো পরস্পরের সমান হলে আউটপুট ১ হয়। ডিজিটাল সংখ্যা তুলনাকারী (Comparator) সার্কিটে এটি ব্যবহৃত হয়।',
+      bn: 'XNOR গেট হলো এক্সঅর গেটের বিপরীত। ইনপুটগুলো পরস্পরের সমান হলে আউটপুট ১ হয়। ডিজিটাল সংখ্যা তুলনাকারী (Comparator) সার্কিটে এটি ব্যবহৃত হয়।',
     },
     rule: {
       en: 'Output is 1 if inputs are matching (0,0 or 1,1). Output is 0 if inputs differ (0,1 or 1,0).',
@@ -317,8 +317,8 @@ export const GATE_REGISTRY: Record<GateType, GateInfo> = {
         bn: 'ইলেকট্রনিক সিকিউরিটি চিপে ইনপুট করা কোড এবং সেভ থাকা কোড মিলেছে কিনা তা প্রতিটি বিটে এক্সনর দ্বারা পরীক্ষা করা হয়।',
       },
       scenario: {
-        en: 'Stored Bit == Entered Bit ➔ Match Confirmed (1)',
-        bn: 'সংরক্ষিত বিট == ইনপুট বিট ➔ মিল সঠিক (১)',
+        en: 'Stored Bit == Entered Bit → Match Confirmed (1)',
+        bn: 'সংরক্ষিত বিট == ইনপুট বিট → মিল সঠিক (১)',
       },
     },
     icCode: '747266 / CD4077 (Quad 2-Input XNOR)',

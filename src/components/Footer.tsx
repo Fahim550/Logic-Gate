@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Language } from '@/types/logic';
-import { Keyboard, Cpu, Sparkles, BookOpen } from 'lucide-react';
+import { Keyboard, Cpu, BookOpen, Zap } from 'lucide-react';
 
 interface FooterProps {
   language: Language;
@@ -16,8 +16,8 @@ export function Footer({ language }: FooterProps) {
           {/* Brand Col */}
           <div className="space-y-3">
             <div className="flex items-center gap-2">
-              <div className="w-6 h-6 rounded-lg bg-sky-500 flex items-center justify-center text-slate-950 font-bold text-xs">
-                ⚡
+              <div className="w-6 h-6 rounded-lg bg-sky-600 flex items-center justify-center text-white font-bold text-xs">
+                <Cpu className="w-3.5 h-3.5" />
               </div>
               <span className="font-bold text-sm text-slate-900 dark:text-white">
                 LogicLab Visual Simulator

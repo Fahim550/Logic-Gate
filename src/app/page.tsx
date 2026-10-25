@@ -35,9 +35,9 @@ export default function HomePage() {
   const [speed, setSpeed] = useState<number>(1);
   const [showTruthTable, setShowTruthTable] = useState<boolean>(true);
 
-  // App settings state
-  const [isDark, setIsDark] = useState<boolean>(true);
-  const [language, setLanguage] = useState<Language>('en');
+  // App settings state (defaults: white background and Bangla language)
+  const [isDark, setIsDark] = useState<boolean>(false);
+  const [language, setLanguage] = useState<Language>('bn');
   const [isMuted, setIsMuted] = useState<boolean>(false);
 
   // Active educational mode tabs
@@ -140,16 +140,16 @@ export default function HomePage() {
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
             <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping" />
+              <span className="w-2 h-2 rounded-full bg-sky-500" />
               <span className="text-xs font-mono font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider">
                 {gateInfo.name[language]}
               </span>
               <span className="text-slate-300 dark:text-slate-700">•</span>
               <span className="text-xs font-mono text-slate-500 dark:text-slate-400">
-                Formula: <strong className="text-cyan-600 dark:text-cyan-300">{gateInfo.expression}</strong>
+                {language === 'en' ? 'Formula:' : 'সূত্র:'} <strong className="text-sky-600 dark:text-cyan-300">{gateInfo.expression}</strong>
               </span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white mt-1">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-1">
               {gateInfo.name[language]}
             </h2>
             <p className="text-sm text-slate-600 dark:text-slate-400 mt-1 max-w-2xl">
@@ -158,7 +158,7 @@ export default function HomePage() {
           </div>
 
           {/* Mode Switcher Tabs */}
-          <div className="flex flex-wrap items-center gap-1.5 p-1 rounded-2xl bg-slate-200/80 dark:bg-slate-900/90 border border-slate-300/80 dark:border-slate-800 text-xs font-semibold backdrop-blur-md">
+          <div className="flex flex-wrap items-center gap-1.5 p-1 rounded-2xl bg-slate-200/70 dark:bg-slate-900 border border-slate-300/80 dark:border-slate-800 text-xs font-semibold backdrop-blur-md">
             <button
               onClick={() => {
                 sound.playClick();
@@ -166,7 +166,7 @@ export default function HomePage() {
               }}
               className={`flex items-center gap-1.5 px-3 py-2 rounded-xl transition-all cursor-pointer ${
                 activeTab === 'simulator'
-                  ? 'bg-sky-600 text-white shadow-md shadow-sky-600/30'
+                  ? 'bg-sky-600 text-white shadow-sm'
                   : 'text-slate-700 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
               }`}
             >
@@ -181,12 +181,12 @@ export default function HomePage() {
               }}
               className={`flex items-center gap-1.5 px-3 py-2 rounded-xl transition-all cursor-pointer ${
                 activeTab === 'step'
-                  ? 'bg-sky-600 text-white shadow-md shadow-sky-600/30'
+                  ? 'bg-sky-600 text-white shadow-sm'
                   : 'text-slate-700 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
               }`}
             >
               <Footprints className="w-3.5 h-3.5" />
-              <span>{language === 'en' ? 'Step-by-Step' : 'ধাপে ধাপে'}</span>
+              <span>{language === 'en' ? 'Step-by-Step' : 'ধাপে ধাপে বিশ্লেষণ'}</span>
             </button>
 
             <button
@@ -196,12 +196,12 @@ export default function HomePage() {
               }}
               className={`flex items-center gap-1.5 px-3 py-2 rounded-xl transition-all cursor-pointer ${
                 activeTab === 'guide'
-                  ? 'bg-sky-600 text-white shadow-md shadow-sky-600/30'
+                  ? 'bg-sky-600 text-white shadow-sm'
                   : 'text-slate-700 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
               }`}
             >
               <BookOpen className="w-3.5 h-3.5" />
-              <span>{language === 'en' ? 'Learning Guide' : 'লার্নিং গাইড'}</span>
+              <span>{language === 'en' ? 'Theory Guide' : 'থিওরি ও নির্দেশিকা'}</span>
             </button>
 
             <button
@@ -211,12 +211,12 @@ export default function HomePage() {
               }}
               className={`flex items-center gap-1.5 px-3 py-2 rounded-xl transition-all cursor-pointer ${
                 activeTab === 'quiz'
-                  ? 'bg-sky-600 text-white shadow-md shadow-sky-600/30'
+                  ? 'bg-sky-600 text-white shadow-sm'
                   : 'text-slate-700 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
               }`}
             >
               <Trophy className="w-3.5 h-3.5 text-amber-400" />
-              <span>{language === 'en' ? 'Quiz / Challenge' : 'কুইজ'}</span>
+              <span>{language === 'en' ? 'Circuit Quiz' : 'সার্কিট কুইজ'}</span>
             </button>
 
             <button
@@ -226,11 +226,11 @@ export default function HomePage() {
               }}
               className={`flex items-center gap-1.5 px-3 py-2 rounded-xl transition-all cursor-pointer ${
                 activeTab === 'half-adder'
-                  ? 'bg-sky-600 text-white shadow-md shadow-sky-600/30'
+                  ? 'bg-sky-600 text-white shadow-sm'
                   : 'text-slate-700 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
               }`}
             >
-              <Cpu className="w-3.5 h-3.5 text-cyan-400" />
+              <Cpu className="w-3.5 h-3.5" />
               <span>{language === 'en' ? 'Half Adder' : 'হাফ অ্যাডার'}</span>
             </button>
           </div>
@@ -278,14 +278,15 @@ export default function HomePage() {
                   onToggleB={handleToggleB}
                   onGateClick={() => setActiveTab('guide')}
                   activeStepElement={activeTab === 'step' ? activeStepElement : null}
+                  language={language}
                 />
 
                 {/* Tactile Control Panel & Live Multimeter Oscilloscope Bar */}
-                <div className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-900/90 shadow-md backdrop-blur-md flex flex-wrap items-center justify-between gap-4">
+                <div className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/90 shadow-sm backdrop-blur-md flex flex-wrap items-center justify-between gap-4">
                   {/* Quick Toggle Push Buttons for Input A and B */}
                   <div className="flex items-center gap-3">
                     <Button
-                      variant={inputA ? 'glow' : 'outline'}
+                      variant={inputA ? 'default' : 'outline'}
                       size="sm"
                       onClick={() => {
                         sound.playSwitch(!inputA);
@@ -293,15 +294,15 @@ export default function HomePage() {
                       }}
                       className="font-mono text-xs font-bold"
                     >
-                      <span>INPUT A:</span>
-                      <span className={inputA ? 'text-cyan-950 font-black' : 'text-slate-400'}>
-                        {inputA ? '1 (HIGH)' : '0 (LOW)'}
+                      <span>{language === 'en' ? 'INPUT A:' : 'ইনপুট A:'}</span>
+                      <span className={inputA ? 'text-white font-black' : 'text-slate-500 dark:text-slate-400'}>
+                        {inputA ? (language === 'en' ? '1 (HIGH)' : '১ (HIGH)') : (language === 'en' ? '0 (LOW)' : '০ (LOW)')}
                       </span>
                     </Button>
 
                     {!isSingleInput && (
                       <Button
-                        variant={inputB ? 'glow' : 'outline'}
+                        variant={inputB ? 'default' : 'outline'}
                         size="sm"
                         onClick={() => {
                           sound.playSwitch(!inputB);
@@ -309,9 +310,9 @@ export default function HomePage() {
                         }}
                         className="font-mono text-xs font-bold"
                       >
-                        <span>INPUT B:</span>
-                        <span className={inputB ? 'text-cyan-950 font-black' : 'text-slate-400'}>
-                          {inputB ? '1 (HIGH)' : '0 (LOW)'}
+                        <span>{language === 'en' ? 'INPUT B:' : 'ইনপুট B:'}</span>
+                        <span className={inputB ? 'text-white font-black' : 'text-slate-500 dark:text-slate-400'}>
+                          {inputB ? (language === 'en' ? '1 (HIGH)' : '১ (HIGH)') : (language === 'en' ? '0 (LOW)' : '০ (LOW)')}
                         </span>
                       </Button>
                     )}
@@ -321,7 +322,7 @@ export default function HomePage() {
                       size="sm"
                       onClick={handleReset}
                       className="text-xs text-slate-500 hover:text-slate-900 dark:hover:text-white"
-                      title="Reset all inputs to 0"
+                      title={language === 'en' ? 'Reset all inputs to 0' : 'সব ইনপুট ০ রিসেট করো'}
                     >
                       <RotateCcw className="w-3.5 h-3.5 mr-1" />
                       <span>{language === 'en' ? 'Reset' : 'রিসেট'}</span>
@@ -331,25 +332,25 @@ export default function HomePage() {
                   {/* Digital Multimeter Voltage Status HUD */}
                   <div className="flex items-center gap-4 text-xs font-mono">
                     <div className="flex items-center gap-1.5">
-                      <span className="text-slate-400">V(A):</span>
-                      <strong className={inputA ? 'text-cyan-500 dark:text-cyan-400 font-bold' : 'text-slate-500'}>
-                        {inputA ? '5.00V' : '0.04V'}
+                      <span className="text-slate-500 dark:text-slate-400">V(A):</span>
+                      <strong className={inputA ? 'text-sky-600 dark:text-cyan-400 font-bold' : 'text-slate-400 dark:text-slate-500'}>
+                        {inputA ? (language === 'en' ? '5.00V' : '৫.০০V') : (language === 'en' ? '0.04V' : '০.০৪V')}
                       </strong>
                     </div>
 
                     {!isSingleInput && (
                       <div className="flex items-center gap-1.5">
-                        <span className="text-slate-400">V(B):</span>
-                        <strong className={inputB ? 'text-cyan-500 dark:text-cyan-400 font-bold' : 'text-slate-500'}>
-                          {inputB ? '5.00V' : '0.04V'}
+                        <span className="text-slate-500 dark:text-slate-400">V(B):</span>
+                        <strong className={inputB ? 'text-sky-600 dark:text-cyan-400 font-bold' : 'text-slate-400 dark:text-slate-500'}>
+                          {inputB ? (language === 'en' ? '5.00V' : '৫.০০V') : (language === 'en' ? '0.04V' : '০.০৪V')}
                         </strong>
                       </div>
                     )}
 
                     <div className="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-                      <span className="text-slate-400">OUT (Y):</span>
-                      <strong className={output ? 'text-amber-500 font-black' : 'text-slate-500'}>
-                        {output ? '5.00V [HIGH]' : '0.00V [LOW]'}
+                      <span className="text-slate-500 dark:text-slate-400">{language === 'en' ? 'OUT (Y):' : 'আউটপুট (Y):'}</span>
+                      <strong className={output ? 'text-amber-600 dark:text-amber-400 font-bold' : 'text-slate-400 dark:text-slate-500'}>
+                        {output ? (language === 'en' ? '5.00V [HIGH]' : '৫.০০V [HIGH]') : (language === 'en' ? '0.00V [LOW]' : '০.০০V [LOW]')}
                       </strong>
                     </div>
                   </div>

@@ -76,7 +76,7 @@ export function QuizMode({
   };
 
   return (
-    <Card className="border-sky-500/30 overflow-hidden">
+    <Card className="border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
       <div className="bg-gradient-to-r from-sky-500/10 via-cyan-500/10 to-transparent p-5 border-b border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-2.5">
           <div className="p-2.5 rounded-xl bg-amber-500/20 text-amber-500 dark:text-amber-300">
@@ -194,8 +194,12 @@ export function QuizMode({
 
         {/* Hint / Explanation Accordion */}
         {showHint && (
-          <div className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-xs text-amber-800 dark:text-amber-200">
-            💡 <strong>{language === 'en' ? 'Hint:' : 'ইঙ্গিত:'}</strong> {challenge.explanation[language]}
+          <div className="flex items-start gap-2 p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-xs text-amber-900 dark:text-amber-200">
+            <HelpCircle className="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
+            <div>
+              <strong className="mr-1">{language === 'en' ? 'Hint:' : 'ইঙ্গিত:'}</strong>
+              {challenge.explanation[language]}
+            </div>
           </div>
         )}
 

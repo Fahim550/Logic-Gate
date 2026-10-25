@@ -5,7 +5,7 @@ import { GateType, Language } from '@/types/logic';
 import { GATE_REGISTRY } from '@/lib/logic-engine';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Cpu, Lightbulb, BookOpen, Sparkles, CheckCircle2 } from 'lucide-react';
+import { Cpu, Lightbulb, BookOpen, Layers, CheckCircle2 } from 'lucide-react';
 
 interface GateExplanationProps {
   gateType: GateType;
@@ -18,7 +18,7 @@ export function GateExplanation({ gateType, language }: GateExplanationProps) {
   return (
     <div className="space-y-6">
       {/* Main Gate Overview Card */}
-      <Card className="overflow-hidden border-sky-500/30">
+      <Card className="overflow-hidden border-slate-200 dark:border-slate-800">
         <div className="bg-gradient-to-r from-sky-500/10 via-cyan-500/10 to-transparent p-6 border-b border-slate-200 dark:border-slate-800">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>
@@ -27,8 +27,9 @@ export function GateExplanation({ gateType, language }: GateExplanationProps) {
                   {info.type}
                 </Badge>
                 {info.universal && (
-                  <Badge variant="success" className="text-xs">
-                    {language === 'en' ? '★ Universal Gate' : '★ সার্বজনীন গেট'}
+                  <Badge variant="success" className="text-xs flex items-center gap-1">
+                    <Layers className="w-3.5 h-3.5" />
+                    <span>{language === 'en' ? 'Universal Gate' : 'সার্বজনীন গেট'}</span>
                   </Badge>
                 )}
                 <span className="text-xs text-slate-500 dark:text-slate-400 font-mono">
@@ -89,8 +90,9 @@ export function GateExplanation({ gateType, language }: GateExplanationProps) {
                   {info.realLifeExample.description[language]}
                 </p>
                 <div className="pt-2">
-                  <span className="inline-block px-3 py-1.5 rounded-lg bg-amber-500/15 border border-amber-500/30 text-xs font-mono font-semibold text-amber-800 dark:text-amber-200">
-                    💡 {info.realLifeExample.scenario[language]}
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500/15 border border-amber-500/30 text-xs font-mono font-semibold text-amber-800 dark:text-amber-200">
+                    <Lightbulb className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400 shrink-0" />
+                    <span>{info.realLifeExample.scenario[language]}</span>
                   </span>
                 </div>
               </div>

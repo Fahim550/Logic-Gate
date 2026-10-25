@@ -158,9 +158,9 @@ export function RealisticBulb({ x, y, output }: RealisticBulbProps) {
       {/* Status Label underneath bulb */}
       <g transform="translate(0, 48)">
         <rect
-          x="-38"
+          x="-42"
           y="-11"
-          width="76"
+          width="84"
           height="22"
           rx="11"
           className={
@@ -171,15 +171,23 @@ export function RealisticBulb({ x, y, output }: RealisticBulbProps) {
           strokeWidth="1.5"
           filter={output ? 'drop-shadow(0 0 8px rgba(251,191,36,0.5))' : undefined}
         />
+        {/* Status LED dot indicator */}
+        <circle
+          cx="-26"
+          cy="0"
+          r="3"
+          className={output ? 'fill-amber-400' : 'fill-slate-600'}
+          filter={output ? 'drop-shadow(0 0 4px #fbbf24)' : undefined}
+        />
         <text
-          x="0"
-          y="4"
+          x="6"
+          y="3.5"
           textAnchor="middle"
-          className={`font-mono text-[11px] font-extrabold tracking-wide ${
+          className={`font-mono text-[10px] font-bold tracking-wider ${
             output ? 'fill-amber-300' : 'fill-slate-400'
           }`}
         >
-          {output ? '💡 HIGH (1)' : '⚪ LOW (0)'}
+          {output ? 'HIGH (1)' : 'LOW (0)'}
         </text>
       </g>
     </g>
