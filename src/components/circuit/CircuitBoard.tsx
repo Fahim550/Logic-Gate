@@ -83,10 +83,10 @@ export function CircuitBoard({
   return (
     <div className="relative w-full overflow-hidden rounded-2xl border border-slate-300 dark:border-slate-800 shadow-md dark:shadow-2xl bg-[#080d1a] select-none">
       {/* Circuit Board Header HUD */}
-      <div className="absolute top-3 left-4 right-4 z-10 flex items-center justify-between text-xs font-mono text-slate-400 pointer-events-none">
-        <div className="flex items-center gap-3">
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-slate-900/90 border border-slate-700/60 shadow">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+      <div className="absolute top-2 sm:top-3 left-2 sm:left-4 right-2 sm:right-4 z-10 flex items-center justify-between text-[10px] sm:text-xs font-mono text-slate-400 pointer-events-none">
+        <div className="flex items-center gap-2 sm:gap-3">
+          <span className="inline-flex items-center gap-1.5 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md bg-slate-900/90 border border-slate-700/60 shadow">
+            <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-400 animate-pulse" />
             <span className="text-slate-300 font-semibold tracking-wider">
               {language === 'en' ? 'PWR: +5.0V ON' : 'পাওয়ার: +৫.০V চালু'}
             </span>
@@ -96,8 +96,8 @@ export function CircuitBoard({
           </span>
         </div>
 
-        <div className="flex items-center gap-3">
-          <span className="px-2.5 py-1 rounded-md bg-slate-900/90 border border-slate-700/60">
+        <div className="flex items-center gap-2 sm:gap-3">
+          <span className="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md bg-slate-900/90 border border-slate-700/60">
             {language === 'en' ? 'FREQ:' : 'গতি:'} <strong className="text-cyan-400 font-bold">{speed}x</strong>
           </span>
           <span className="hidden sm:inline-block text-[11px] text-slate-500">

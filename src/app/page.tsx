@@ -17,7 +17,7 @@ import { sound } from '@/lib/sound-effects';
 import {
   Activity,
   BookOpen,
-  Footprints,
+  Workflow,
   Trophy,
   Cpu,
   Zap,
@@ -158,13 +158,13 @@ export default function HomePage() {
           </div>
 
           {/* Mode Switcher Tabs */}
-          <div className="flex flex-wrap items-center gap-1.5 p-1 rounded-2xl bg-slate-200/70 dark:bg-slate-900 border border-slate-300/80 dark:border-slate-800 text-xs font-semibold backdrop-blur-md">
+          <div className="flex items-center gap-1.5 p-1 rounded-2xl bg-slate-200/70 dark:bg-slate-900 border border-slate-300/80 dark:border-slate-800 text-xs font-semibold backdrop-blur-md overflow-x-auto no-scrollbar scroll-smooth -mx-4 px-4 sm:mx-0 sm:px-1">
             <button
               onClick={() => {
                 sound.playClick();
                 setActiveTab('simulator');
               }}
-              className={`flex items-center gap-1.5 px-3 py-2 rounded-xl transition-all cursor-pointer ${
+              className={`flex items-center gap-1.5 px-3 py-2 rounded-xl transition-all shrink-0 whitespace-nowrap cursor-pointer ${
                 activeTab === 'simulator'
                   ? 'bg-sky-600 text-white shadow-sm'
                   : 'text-slate-700 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
@@ -179,13 +179,13 @@ export default function HomePage() {
                 sound.playClick();
                 setActiveTab('step');
               }}
-              className={`flex items-center gap-1.5 px-3 py-2 rounded-xl transition-all cursor-pointer ${
+              className={`flex items-center gap-1.5 px-3 py-2 rounded-xl transition-all shrink-0 whitespace-nowrap cursor-pointer ${
                 activeTab === 'step'
                   ? 'bg-sky-600 text-white shadow-sm'
                   : 'text-slate-700 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
               }`}
             >
-              <Footprints className="w-3.5 h-3.5" />
+              <Workflow className="w-3.5 h-3.5" />
               <span>{language === 'en' ? 'Step-by-Step' : 'ধাপে ধাপে বিশ্লেষণ'}</span>
             </button>
 
@@ -194,7 +194,7 @@ export default function HomePage() {
                 sound.playClick();
                 setActiveTab('guide');
               }}
-              className={`flex items-center gap-1.5 px-3 py-2 rounded-xl transition-all cursor-pointer ${
+              className={`flex items-center gap-1.5 px-3 py-2 rounded-xl transition-all shrink-0 whitespace-nowrap cursor-pointer ${
                 activeTab === 'guide'
                   ? 'bg-sky-600 text-white shadow-sm'
                   : 'text-slate-700 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
@@ -209,7 +209,7 @@ export default function HomePage() {
                 sound.playClick();
                 setActiveTab('quiz');
               }}
-              className={`flex items-center gap-1.5 px-3 py-2 rounded-xl transition-all cursor-pointer ${
+              className={`flex items-center gap-1.5 px-3 py-2 rounded-xl transition-all shrink-0 whitespace-nowrap cursor-pointer ${
                 activeTab === 'quiz'
                   ? 'bg-sky-600 text-white shadow-sm'
                   : 'text-slate-700 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
@@ -224,7 +224,7 @@ export default function HomePage() {
                 sound.playClick();
                 setActiveTab('half-adder');
               }}
-              className={`flex items-center gap-1.5 px-3 py-2 rounded-xl transition-all cursor-pointer ${
+              className={`flex items-center gap-1.5 px-3 py-2 rounded-xl transition-all shrink-0 whitespace-nowrap cursor-pointer ${
                 activeTab === 'half-adder'
                   ? 'bg-sky-600 text-white shadow-sm'
                   : 'text-slate-700 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
@@ -282,46 +282,56 @@ export default function HomePage() {
                 />
 
                 {/* Tactile Control Panel & Live Multimeter Oscilloscope Bar */}
-                <div className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/90 shadow-sm backdrop-blur-md flex flex-wrap items-center justify-between gap-4">
-                  {/* Quick Toggle Push Buttons for Input A and B */}
-                  <div className="flex items-center gap-3">
-                    <Button
-                      variant={inputA ? 'default' : 'outline'}
-                      size="sm"
+                <div className="p-3.5 sm:p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/90 shadow-sm backdrop-blur-md space-y-3">
+                  {/* Switch Controls: Large touch-friendly cards on mobile */}
+                  <div className={`grid ${isSingleInput ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-2'} gap-2 sm:flex sm:items-center sm:gap-3`}>
+                    <button
                       onClick={() => {
                         sound.playSwitch(!inputA);
                         setInputA(!inputA);
                       }}
-                      className="font-mono text-xs font-bold"
+                      className={`flex items-center justify-between sm:justify-start gap-2 px-3 py-2.5 sm:py-2 rounded-xl border text-xs font-mono font-bold transition-all cursor-pointer select-none ${
+                        inputA
+                          ? 'bg-sky-600 text-white border-sky-600 shadow-sm shadow-sky-600/30'
+                          : 'bg-slate-100 dark:bg-slate-800/80 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
+                      }`}
                     >
-                      <span>{language === 'en' ? 'INPUT A:' : 'ইনপুট A:'}</span>
-                      <span className={inputA ? 'text-white font-black' : 'text-slate-500 dark:text-slate-400'}>
-                        {inputA ? (language === 'en' ? '1 (HIGH)' : '১ (HIGH)') : (language === 'en' ? '0 (LOW)' : '০ (LOW)')}
+                      <div className="flex items-center gap-1.5">
+                        <span className={`w-2 h-2 rounded-full ${inputA ? 'bg-white animate-pulse' : 'bg-slate-400'}`} />
+                        <span>{language === 'en' ? 'INPUT A' : 'ইনপুট A'}</span>
+                      </div>
+                      <span className={`text-[11px] px-1.5 py-0.5 rounded ${inputA ? 'bg-sky-700 text-white' : 'bg-slate-200 dark:bg-slate-700 text-slate-500 dark:text-slate-400'}`}>
+                        {inputA ? (language === 'en' ? '1 HIGH' : '১ HIGH') : (language === 'en' ? '0 LOW' : '০ LOW')}
                       </span>
-                    </Button>
+                    </button>
 
                     {!isSingleInput && (
-                      <Button
-                        variant={inputB ? 'default' : 'outline'}
-                        size="sm"
+                      <button
                         onClick={() => {
                           sound.playSwitch(!inputB);
                           setInputB(!inputB);
                         }}
-                        className="font-mono text-xs font-bold"
+                        className={`flex items-center justify-between sm:justify-start gap-2 px-3 py-2.5 sm:py-2 rounded-xl border text-xs font-mono font-bold transition-all cursor-pointer select-none ${
+                          inputB
+                            ? 'bg-sky-600 text-white border-sky-600 shadow-sm shadow-sky-600/30'
+                            : 'bg-slate-100 dark:bg-slate-800/80 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
+                        }`}
                       >
-                        <span>{language === 'en' ? 'INPUT B:' : 'ইনপুট B:'}</span>
-                        <span className={inputB ? 'text-white font-black' : 'text-slate-500 dark:text-slate-400'}>
-                          {inputB ? (language === 'en' ? '1 (HIGH)' : '১ (HIGH)') : (language === 'en' ? '0 (LOW)' : '০ (LOW)')}
+                        <div className="flex items-center gap-1.5">
+                          <span className={`w-2 h-2 rounded-full ${inputB ? 'bg-white animate-pulse' : 'bg-slate-400'}`} />
+                          <span>{language === 'en' ? 'INPUT B' : 'ইনপুট B'}</span>
+                        </div>
+                        <span className={`text-[11px] px-1.5 py-0.5 rounded ${inputB ? 'bg-sky-700 text-white' : 'bg-slate-200 dark:bg-slate-700 text-slate-500 dark:text-slate-400'}`}>
+                          {inputB ? (language === 'en' ? '1 HIGH' : '১ HIGH') : (language === 'en' ? '0 LOW' : '০ LOW')}
                         </span>
-                      </Button>
+                      </button>
                     )}
 
                     <Button
                       variant="ghost"
                       size="sm"
                       onClick={handleReset}
-                      className="text-xs text-slate-500 hover:text-slate-900 dark:hover:text-white"
+                      className="hidden sm:inline-flex text-xs text-slate-500 hover:text-slate-900 dark:hover:text-white"
                       title={language === 'en' ? 'Reset all inputs to 0' : 'সব ইনপুট ০ রিসেট করো'}
                     >
                       <RotateCcw className="w-3.5 h-3.5 mr-1" />
@@ -329,29 +339,44 @@ export default function HomePage() {
                     </Button>
                   </div>
 
-                  {/* Digital Multimeter Voltage Status HUD */}
-                  <div className="flex items-center gap-4 text-xs font-mono">
-                    <div className="flex items-center gap-1.5">
-                      <span className="text-slate-500 dark:text-slate-400">V(A):</span>
-                      <strong className={inputA ? 'text-sky-600 dark:text-cyan-400 font-bold' : 'text-slate-400 dark:text-slate-500'}>
-                        {inputA ? (language === 'en' ? '5.00V' : '৫.০০V') : (language === 'en' ? '0.04V' : '০.০৪V')}
-                      </strong>
-                    </div>
-
-                    {!isSingleInput && (
-                      <div className="flex items-center gap-1.5">
-                        <span className="text-slate-500 dark:text-slate-400">V(B):</span>
-                        <strong className={inputB ? 'text-sky-600 dark:text-cyan-400 font-bold' : 'text-slate-400 dark:text-slate-500'}>
-                          {inputB ? (language === 'en' ? '5.00V' : '৫.০০V') : (language === 'en' ? '0.04V' : '০.০৪V')}
+                  {/* Multimeter Status Strip */}
+                  <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-100 dark:border-slate-800/80 text-xs font-mono">
+                    <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-1">
+                        <span className="text-slate-400 text-[11px]">V(A):</span>
+                        <strong className={inputA ? 'text-sky-600 dark:text-cyan-400 font-bold' : 'text-slate-500'}>
+                          {inputA ? (language === 'en' ? '5.0V' : '৫.০V') : (language === 'en' ? '0.0V' : '০.০V')}
                         </strong>
                       </div>
-                    )}
 
-                    <div className="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-                      <span className="text-slate-500 dark:text-slate-400">{language === 'en' ? 'OUT (Y):' : 'আউটপুট (Y):'}</span>
-                      <strong className={output ? 'text-amber-600 dark:text-amber-400 font-bold' : 'text-slate-400 dark:text-slate-500'}>
-                        {output ? (language === 'en' ? '5.00V [HIGH]' : '৫.০০V [HIGH]') : (language === 'en' ? '0.00V [LOW]' : '০.০০V [LOW]')}
-                      </strong>
+                      {!isSingleInput && (
+                        <div className="flex items-center gap-1">
+                          <span className="text-slate-400 text-[11px]">V(B):</span>
+                          <strong className={inputB ? 'text-sky-600 dark:text-cyan-400 font-bold' : 'text-slate-500'}>
+                            {inputB ? (language === 'en' ? '5.0V' : '৫.০V') : (language === 'en' ? '0.0V' : '০.০V')}
+                          </strong>
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={handleReset}
+                        className="sm:hidden h-7 px-2 text-xs text-slate-500 hover:text-slate-900 dark:hover:text-white"
+                        title={language === 'en' ? 'Reset all inputs to 0' : 'সব ইনপুট ০ রিসেট করো'}
+                      >
+                        <RotateCcw className="w-3 h-3 mr-1" />
+                        <span>{language === 'en' ? 'Reset' : 'রিসেট'}</span>
+                      </Button>
+
+                      <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                        <span className="text-slate-400 text-[11px]">{language === 'en' ? 'OUT:' : 'আউট:'}</span>
+                        <strong className={output ? 'text-amber-600 dark:text-amber-400 font-bold' : 'text-slate-400 dark:text-slate-500'}>
+                          {output ? (language === 'en' ? '5.0V [1]' : '৫.০V [১]') : (language === 'en' ? '0.0V [0]' : '০.০V [০]')}
+                        </strong>
+                      </div>
                     </div>
                   </div>
                 </div>

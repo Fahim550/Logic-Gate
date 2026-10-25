@@ -48,6 +48,16 @@ export function InteractiveSwitch({
       aria-checked={state}
       aria-label={`${label}: ${state ? 'HIGH (1)' : 'LOW (0)'}`}
     >
+      {/* Expanded invisible touch/click hit area for easy tapping on mobile */}
+      <rect
+        x="-48"
+        y="-42"
+        width="96"
+        height="84"
+        fill="transparent"
+        className="cursor-pointer"
+      />
+
       {/* Base mounting plate */}
       <rect
         x="-38"

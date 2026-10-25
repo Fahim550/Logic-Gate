@@ -31,11 +31,11 @@ export function TruthTable({
   };
 
   return (
-    <div className="w-full rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/90 shadow-lg p-5 backdrop-blur-md">
+    <div className="w-full rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/90 shadow-lg p-3.5 sm:p-5 backdrop-blur-md">
       {/* Header */}
-      <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800 mb-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800 mb-3 sm:mb-4 gap-2">
         <div>
-          <h4 className="font-bold text-base text-slate-900 dark:text-white flex items-center gap-2">
+          <h4 className="font-bold text-sm sm:text-base text-slate-900 dark:text-white flex items-center gap-2">
             <span>{language === 'en' ? 'Live Truth Table' : 'সরাসরি ট্রুথ টেবিল'}</span>
             <Badge variant="neon" className="font-mono text-xs">
               {gateInfo.expression}
@@ -48,7 +48,7 @@ export function TruthTable({
           </p>
         </div>
 
-        <div className="text-right">
+        <div className="flex sm:block items-center justify-between sm:text-right">
           <span className="text-[11px] font-mono font-medium text-slate-400 dark:text-slate-500">
             {language === 'en' ? 'TTL IC:' : 'টিটিএল আইসি:'} {gateInfo.icCode.split(' ')[0]}
           </span>
@@ -57,17 +57,17 @@ export function TruthTable({
 
       {/* Table */}
       <div className="overflow-x-auto">
-        <table className="w-full text-center border-collapse text-sm">
+        <table className="w-full text-center border-collapse text-xs sm:text-sm">
           <thead>
-            <tr className="border-b border-slate-200 dark:border-slate-800 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-              <th className="py-2.5 px-3">{language === 'en' ? 'Input A' : 'ইনপুট A'}</th>
+            <tr className="border-b border-slate-200 dark:border-slate-800 text-[11px] sm:text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+              <th className="py-2 px-1.5 sm:py-2.5 sm:px-3">{language === 'en' ? 'Input A' : 'ইনপুট A'}</th>
               {!isSingleInput && (
-                <th className="py-2.5 px-3">{language === 'en' ? 'Input B' : 'ইনপুট B'}</th>
+                <th className="py-2 px-1.5 sm:py-2.5 sm:px-3">{language === 'en' ? 'Input B' : 'ইনপুট B'}</th>
               )}
-              <th className="py-2.5 px-3 text-sky-600 dark:text-sky-400">
+              <th className="py-2 px-1.5 sm:py-2.5 sm:px-3 text-sky-600 dark:text-sky-400">
                 {language === 'en' ? 'Output (Y)' : 'আউটপুট (Y)'}
               </th>
-              <th className="py-2.5 px-3">{language === 'en' ? 'State' : 'অবস্থা'}</th>
+              <th className="py-2 px-1.5 sm:py-2.5 sm:px-3">{language === 'en' ? 'State' : 'অবস্থা'}</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 font-mono">

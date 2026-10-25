@@ -19,10 +19,10 @@ export function GateExplanation({ gateType, language }: GateExplanationProps) {
     <div className="space-y-6">
       {/* Main Gate Overview Card */}
       <Card className="overflow-hidden border-slate-200 dark:border-slate-800">
-        <div className="bg-gradient-to-r from-sky-500/10 via-cyan-500/10 to-transparent p-6 border-b border-slate-200 dark:border-slate-800">
+        <div className="bg-gradient-to-r from-sky-500/10 via-cyan-500/10 to-transparent p-4 sm:p-6 border-b border-slate-200 dark:border-slate-800">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>
-              <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2">
                 <Badge variant="neon" className="text-xs font-mono">
                   {info.type}
                 </Badge>
@@ -36,21 +36,21 @@ export function GateExplanation({ gateType, language }: GateExplanationProps) {
                   TTL IC: {info.icCode.split(' ')[0]}
                 </span>
               </div>
-              <h3 className="text-2xl font-black text-slate-900 dark:text-white mt-2">
+              <h3 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mt-2">
                 {info.name[language]}
               </h3>
             </div>
 
-            <div className="px-4 py-2 rounded-xl bg-slate-900 text-cyan-300 font-mono text-lg font-bold border border-cyan-500/40 shadow-inner">
+            <div className="px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl bg-slate-900 text-cyan-300 font-mono text-base sm:text-lg font-bold border border-cyan-500/40 shadow-inner">
               {info.expression}
             </div>
           </div>
-          <p className="mt-3 text-slate-600 dark:text-slate-300 font-medium text-sm leading-relaxed">
+          <p className="mt-2.5 sm:mt-3 text-slate-600 dark:text-slate-300 font-medium text-xs sm:text-sm leading-relaxed">
             {info.shortDesc[language]}
           </p>
         </div>
 
-        <CardContent className="p-6 space-y-6">
+        <CardContent className="p-4 sm:p-6 space-y-5 sm:space-y-6">
           {/* Detailed Explanation */}
           <div>
             <h4 className="flex items-center gap-2 text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-2">

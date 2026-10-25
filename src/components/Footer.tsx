@@ -44,13 +44,15 @@ export function Footer({ language }: FooterProps) {
             </ul>
           </div>
 
-          {/* Keyboard Shortcuts Guide */}
+          {/* Keyboard Shortcuts Guide (Desktop) & Touch Tips (Mobile) */}
           <div className="space-y-2">
             <h5 className="font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1.5 uppercase tracking-wider text-[11px]">
               <Keyboard className="w-4 h-4 text-cyan-500" />
-              <span>{language === 'en' ? 'Keyboard Controls' : 'কীবোর্ড শর্টকাট'}</span>
+              <span>{language === 'en' ? 'Controls & Tips' : 'নিয়ন্ত্রণ ও টিপস'}</span>
             </h5>
-            <div className="space-y-1 font-mono text-[11px]">
+            
+            {/* Desktop Keyboard */}
+            <div className="hidden md:block space-y-1 font-mono text-[11px]">
               <div>
                 <kbd className="px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300">
                   Tab
@@ -74,10 +76,17 @@ export function Footer({ language }: FooterProps) {
                 : {language === 'en' ? 'Reset Inputs to 0' : 'ইনপুট ০ রিসেট'}
               </div>
             </div>
+
+            {/* Mobile Touch Tip */}
+            <div className="block md:hidden text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              {language === 'en'
+                ? 'Tip: Tap switches on screen or use the large touch toggles below to change states instantly.'
+                : 'টিপস: স্ক্রিনের সুইচ অথবা নিচের বড় টগল বাটনে ট্যাপ করে নিমেষেই ইনপুট পরিবর্তন করতে পারো।'}
+            </div>
           </div>
         </div>
 
-        <div className="pt-6 border-t border-slate-200/60 dark:border-slate-800/60 flex flex-wrap items-center justify-between gap-3 text-[11px]">
+        <div className="pt-6 border-t border-slate-200/60 dark:border-slate-800/60 flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left text-[11px]">
           <span>© 2026 LogicLab · Open Source Logic Gate Learning</span>
           <span className="text-slate-400">
             {language === 'en'

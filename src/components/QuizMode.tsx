@@ -77,13 +77,13 @@ export function QuizMode({
 
   return (
     <Card className="border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
-      <div className="bg-gradient-to-r from-sky-500/10 via-cyan-500/10 to-transparent p-5 border-b border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-3">
+      <div className="bg-gradient-to-r from-sky-500/10 via-cyan-500/10 to-transparent p-3.5 sm:p-5 border-b border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-2.5">
-          <div className="p-2.5 rounded-xl bg-amber-500/20 text-amber-500 dark:text-amber-300">
+          <div className="p-2 sm:p-2.5 rounded-xl bg-amber-500/20 text-amber-500 dark:text-amber-300 shrink-0">
             <Trophy className="w-5 h-5" />
           </div>
           <div>
-            <h4 className="font-bold text-base text-slate-900 dark:text-white flex items-center gap-2">
+            <h4 className="font-bold text-sm sm:text-base text-slate-900 dark:text-white flex items-center gap-2">
               <span>{language === 'en' ? 'Interactive Circuit Challenge' : 'ইন্টারেক্টিভ সার্কিট কুইজ'}</span>
               <Badge variant="outline" className="text-xs font-mono">
                 {challengeIndex + 1} / {QUIZ_CHALLENGES.length}
@@ -104,9 +104,9 @@ export function QuizMode({
         </div>
       </div>
 
-      <CardContent className="p-6 space-y-5">
+      <CardContent className="p-3.5 sm:p-6 space-y-4 sm:space-y-5">
         {/* Challenge prompt box */}
-        <div className="p-4 rounded-2xl bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 space-y-2">
+        <div className="p-3.5 sm:p-4 rounded-2xl bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 space-y-2">
           <div className="flex items-center justify-between">
             <Badge variant="neon" className="text-xs font-mono">
               GATE: {challenge.gateType}
@@ -116,17 +116,17 @@ export function QuizMode({
             </span>
           </div>
 
-          <h5 className="text-lg font-bold text-slate-900 dark:text-white pt-1">
+          <h5 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white pt-1">
             {challenge.question[language]}
           </h5>
-          <p className="text-sm text-slate-600 dark:text-slate-300">
+          <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
             {challenge.prompt[language]}
           </p>
         </div>
 
         {/* Live Simulator Status Bar */}
-        <div className="flex flex-wrap items-center justify-between p-3.5 rounded-xl bg-slate-900 text-slate-100 text-xs font-mono border border-slate-800">
-          <div className="flex items-center gap-3">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between p-3 sm:p-3.5 rounded-xl bg-slate-900 text-slate-100 text-xs font-mono border border-slate-800 gap-2.5">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
             <span>
               CURRENT: <strong className="text-sky-400">{currentGate}</strong>
             </span>
@@ -138,8 +138,8 @@ export function QuizMode({
                 B: <strong className={inputB ? 'text-cyan-400' : 'text-slate-400'}>{inputB ? '1' : '0'}</strong>
               </span>
             )}
-            <span>
-              OUTPUT:{' '}
+            <span className="px-2 py-0.5 rounded bg-slate-800 border border-slate-700">
+              OUT:{' '}
               <strong className={output ? 'text-amber-400' : 'text-slate-400'}>
                 {output ? '1 (HIGH)' : '0 (LOW)'}
               </strong>
@@ -151,7 +151,7 @@ export function QuizMode({
               size="sm"
               variant="outline"
               onClick={handleLoadQuestionToCircuit}
-              className="text-xs py-1 h-7 border-sky-400 text-sky-300"
+              className="text-xs py-1 h-7 border-sky-400 text-sky-300 w-full sm:w-auto"
             >
               {language === 'en' ? 'Switch to this Gate' : 'এই গেটে যাও'}
             </Button>

@@ -37,13 +37,13 @@ export function HalfAdderSimulator({ language, speed }: HalfAdderSimulatorProps)
 
   return (
     <Card className="border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
-      <div className="bg-gradient-to-r from-sky-500/10 via-cyan-500/10 to-transparent p-5 border-b border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-3">
+      <div className="bg-gradient-to-r from-sky-500/10 via-cyan-500/10 to-transparent p-3.5 sm:p-5 border-b border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-2.5">
-          <div className="p-2.5 rounded-xl bg-cyan-500/15 text-cyan-600 dark:text-cyan-300">
+          <div className="p-2 sm:p-2.5 rounded-xl bg-cyan-500/15 text-cyan-600 dark:text-cyan-300 shrink-0">
             <Cpu className="w-5 h-5" />
           </div>
           <div>
-            <h4 className="font-bold text-base text-slate-900 dark:text-white flex items-center gap-2">
+            <h4 className="font-bold text-sm sm:text-base text-slate-900 dark:text-white flex items-center gap-2">
               <span>{language === 'en' ? 'Compound Circuit: 1-Bit Half Adder' : 'যৌগিক বর্তনী: ১-বিট হাফ অ্যাডার'}</span>
               <Badge variant="neon" className="text-xs">
                 XOR + AND
@@ -58,17 +58,19 @@ export function HalfAdderSimulator({ language, speed }: HalfAdderSimulatorProps)
         </div>
 
         {/* Live arithmetic banner */}
-        <div className="flex items-center gap-3 px-4 py-2 rounded-xl bg-slate-900 text-white font-mono text-sm border border-slate-700/80">
-          <span>{inputA ? '1' : '0'}</span>
-          <Plus className="w-3.5 h-3.5 text-cyan-400" />
-          <span>{inputB ? '1' : '0'}</span>
-          <span className="text-slate-500">=</span>
-          <strong className="text-amber-400 text-base">{binaryVal}₂</strong>
-          <span className="text-xs text-slate-400">({decimalVal} {language === 'en' ? 'in decimal' : 'দশমিকে'})</span>
+        <div className="flex items-center justify-between sm:justify-start gap-2 sm:gap-3 px-3 sm:px-4 py-2 rounded-xl bg-slate-900 text-white font-mono text-xs sm:text-sm border border-slate-700/80 w-full sm:w-auto">
+          <div className="flex items-center gap-2">
+            <span>{inputA ? '1' : '0'}</span>
+            <Plus className="w-3.5 h-3.5 text-cyan-400" />
+            <span>{inputB ? '1' : '0'}</span>
+            <span className="text-slate-500">=</span>
+            <strong className="text-amber-400 text-base">{binaryVal}₂</strong>
+          </div>
+          <span className="text-[11px] sm:text-xs text-slate-400">({decimalVal} {language === 'en' ? 'in decimal' : 'দশমিকে'})</span>
         </div>
       </div>
 
-      <CardContent className="p-4 sm:p-6 space-y-5">
+      <CardContent className="p-3.5 sm:p-6 space-y-4 sm:space-y-5">
         {/* SVG Half Adder Circuit */}
         <div className="relative w-full overflow-hidden rounded-2xl border border-slate-300 dark:border-slate-800 shadow-md dark:shadow-2xl bg-[#080d1a] select-none">
           <svg
@@ -222,6 +224,43 @@ export function HalfAdderSimulator({ language, speed }: HalfAdderSimulatorProps)
               {language === 'en' ? 'CARRY BIT (C = A · B)' : 'হাতে থাকা বিট (C = A · B)'}
             </text>
           </svg>
+        </div>
+
+        {/* Quick tactile toggle bar for Bit A & Bit B */}
+        <div className="grid grid-cols-2 gap-2 sm:flex sm:items-center sm:gap-3 p-3 rounded-2xl bg-slate-100 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800">
+          <button
+            onClick={toggleA}
+            className={`flex items-center justify-between sm:justify-start gap-2 px-3 py-2.5 rounded-xl border text-xs font-mono font-bold transition-all cursor-pointer ${
+              inputA
+                ? 'bg-sky-600 text-white border-sky-600 shadow-sm'
+                : 'bg-white dark:bg-slate-800/80 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300'
+            }`}
+          >
+            <div className="flex items-center gap-1.5">
+              <span className={`w-2 h-2 rounded-full ${inputA ? 'bg-white animate-pulse' : 'bg-slate-400'}`} />
+              <span>{language === 'en' ? 'BIT A' : 'বিট A'}</span>
+            </div>
+            <span className={`text-[11px] px-1.5 py-0.5 rounded ${inputA ? 'bg-sky-700 text-white' : 'bg-slate-200 dark:bg-slate-700 text-slate-500'}`}>
+              {inputA ? '1' : '0'}
+            </span>
+          </button>
+
+          <button
+            onClick={toggleB}
+            className={`flex items-center justify-between sm:justify-start gap-2 px-3 py-2.5 rounded-xl border text-xs font-mono font-bold transition-all cursor-pointer ${
+              inputB
+                ? 'bg-sky-600 text-white border-sky-600 shadow-sm'
+                : 'bg-white dark:bg-slate-800/80 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300'
+            }`}
+          >
+            <div className="flex items-center gap-1.5">
+              <span className={`w-2 h-2 rounded-full ${inputB ? 'bg-white animate-pulse' : 'bg-slate-400'}`} />
+              <span>{language === 'en' ? 'BIT B' : 'বিট B'}</span>
+            </div>
+            <span className={`text-[11px] px-1.5 py-0.5 rounded ${inputB ? 'bg-sky-700 text-white' : 'bg-slate-200 dark:bg-slate-700 text-slate-500'}`}>
+              {inputB ? '1' : '0'}
+            </span>
+          </button>
         </div>
 
         {/* Half Adder Explanation & Truth Table */}

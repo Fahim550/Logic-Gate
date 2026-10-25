@@ -12,7 +12,7 @@ import {
   ChevronRight,
   ChevronLeft,
   RotateCcw,
-  Footprints,
+  Workflow,
   Activity,
 } from 'lucide-react';
 
@@ -90,15 +90,15 @@ export function StepByStepTracer({
   };
 
   return (
-    <div className="w-full rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm p-5 text-slate-900 dark:text-white transition-colors">
+    <div className="w-full rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm p-3.5 sm:p-5 text-slate-900 dark:text-white transition-colors">
       {/* Header */}
-      <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-200 dark:border-slate-800">
+      <div className="flex flex-wrap items-center justify-between gap-3 pb-3 sm:pb-4 border-b border-slate-200 dark:border-slate-800">
         <div className="flex items-center gap-2.5">
-          <div className="p-2 rounded-xl bg-sky-500/15 text-sky-600 dark:text-sky-400">
-            <Footprints className="w-5 h-5" />
+          <div className="p-2 rounded-xl bg-sky-500/15 text-sky-600 dark:text-sky-400 shrink-0">
+            <Workflow className="w-5 h-5" />
           </div>
           <div>
-            <h4 className="font-bold text-base flex items-center gap-2">
+            <h4 className="font-bold text-sm sm:text-base flex items-center gap-2">
               <span>{language === 'en' ? 'Signal Flow Tracer' : 'সংকেত সঞ্চালন ট্রেসার'}</span>
               <Badge variant="neon" className="text-xs">
                 {language === 'en' ? `Step ${currentStep.step} of 5` : `ধাপ ${currentStep.step}/৫`}
@@ -113,12 +113,13 @@ export function StepByStepTracer({
         </div>
 
         {/* Player controls */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2 w-full sm:w-auto justify-end">
           <Button
             size="sm"
             variant="outline"
             onClick={handleReset}
             title={language === 'en' ? 'Reset to Step 1' : 'প্রথম ধাপে যাও'}
+            className="h-8 w-8 sm:w-auto sm:px-3 p-0"
           >
             <RotateCcw className="w-4 h-4" />
           </Button>
@@ -129,6 +130,7 @@ export function StepByStepTracer({
             onClick={handlePrev}
             disabled={currentStepIndex === 0}
             title={language === 'en' ? 'Previous Step' : 'পূর্ববর্তী ধাপ'}
+            className="h-8 w-8 sm:w-auto sm:px-3 p-0"
           >
             <ChevronLeft className="w-4 h-4" />
           </Button>
@@ -137,16 +139,16 @@ export function StepByStepTracer({
             size="sm"
             variant={isPlaying ? 'destructive' : 'default'}
             onClick={togglePlay}
-            className="min-w-24 font-bold"
+            className="h-8 min-w-20 sm:min-w-24 font-bold text-xs"
           >
             {isPlaying ? (
               <>
-                <Pause className="w-4 h-4" />
+                <Pause className="w-3.5 h-3.5" />
                 <span>{language === 'en' ? 'Pause' : 'থামাও'}</span>
               </>
             ) : (
               <>
-                <Play className="w-4 h-4" />
+                <Play className="w-3.5 h-3.5" />
                 <span>{language === 'en' ? 'Auto-Play' : 'চালু করো'}</span>
               </>
             )}
@@ -158,6 +160,7 @@ export function StepByStepTracer({
             onClick={handleNext}
             disabled={currentStepIndex === STEP_PIPELINE.length - 1}
             title={language === 'en' ? 'Next Step' : 'পরবর্তী ধাপ'}
+            className="h-8 w-8 sm:w-auto sm:px-3 p-0"
           >
             <ChevronRight className="w-4 h-4" />
           </Button>
@@ -165,7 +168,7 @@ export function StepByStepTracer({
       </div>
 
       {/* Step Progress Dots */}
-      <div className="grid grid-cols-5 gap-2 my-4">
+      <div className="flex sm:grid sm:grid-cols-5 gap-2 my-3 sm:my-4 overflow-x-auto no-scrollbar pb-1 -mx-3.5 px-3.5 sm:mx-0 sm:px-0">
         {STEP_PIPELINE.map((s, idx) => {
           const isDone = idx < currentStepIndex;
           const isCurrent = idx === currentStepIndex;
@@ -176,7 +179,7 @@ export function StepByStepTracer({
                 sound.playClick();
                 setCurrentStepIndex(idx);
               }}
-              className={`p-2.5 rounded-xl text-left transition-all cursor-pointer ${
+              className={`p-2.5 rounded-xl text-left transition-all shrink-0 sm:shrink min-w-[130px] sm:min-w-0 cursor-pointer ${
                 isCurrent
                   ? 'bg-sky-50 dark:bg-sky-950/40 border-2 border-sky-500 shadow-sm'
                   : isDone
@@ -190,7 +193,7 @@ export function StepByStepTracer({
                 </span>
                 {isCurrent && <span className="w-2 h-2 rounded-full bg-sky-500 animate-pulse" />}
               </div>
-              <span className={`block text-xs font-semibold truncate ${
+              <span className={`block text-xs font-semibold ${
                 isCurrent ? 'text-sky-950 dark:text-white font-bold' : 'text-slate-700 dark:text-slate-300'
               }`}>
                 {s.title[language].split('.')[1] || s.title[language]}
