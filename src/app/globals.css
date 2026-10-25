@@ -1,26 +1,151 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #f8fafc;
+    --foreground: #0f172a;
+    --card: #ffffff;
+    --card-foreground: #0f172a;
+    --popover: #ffffff;
+    --popover-foreground: #0f172a;
+    --primary: #0284c7;
+    --primary-foreground: #ffffff;
+    --secondary: #f1f5f9;
+    --secondary-foreground: #0f172a;
+    --muted: #f1f5f9;
+    --muted-foreground: #64748b;
+    --accent: #e0f2fe;
+    --accent-foreground: #0369a1;
+    --destructive: #ef4444;
+    --destructive-foreground: #ffffff;
+    --border: #e2e8f0;
+    --input: #e2e8f0;
+    --ring: #0284c7;
+    --radius: 0.75rem;
+
+    --circuit-bg: #0b1120;
+    --wire-off: #475569;
+    --wire-on: #00f0ff;
+    --wire-glow: rgba(0, 240, 255, 0.6);
+    --bulb-on: #ffb703;
+    --bulb-glow: rgba(255, 183, 3, 0.75);
+  }
+
+  .dark {
+    --background: #060913;
+    --foreground: #f8fafc;
+    --card: #0b1120;
+    --card-foreground: #f8fafc;
+    --popover: #0b1120;
+    --popover-foreground: #f8fafc;
+    --primary: #38bdf8;
+    --primary-foreground: #082f49;
+    --secondary: #161f30;
+    --secondary-foreground: #f8fafc;
+    --muted: #161f30;
+    --muted-foreground: #94a3b8;
+    --accent: #1e3a5f;
+    --accent-foreground: #38bdf8;
+    --destructive: #f87171;
+    --destructive-foreground: #ffffff;
+    --border: #1e293b;
+    --input: #1e293b;
+    --ring: #38bdf8;
+
+    --circuit-bg: #030712;
+    --wire-off: #334155;
+    --wire-on: #00f0ff;
+    --wire-glow: rgba(0, 240, 255, 0.85);
+    --bulb-on: #fbbf24;
+    --bulb-glow: rgba(251, 191, 36, 0.85);
   }
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Circuit grid pattern background */
+.circuit-grid {
+  background-color: #080e1a;
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(14, 165, 233, 0.08) 0%, transparent 80%),
+    linear-gradient(to right, rgba(56, 189, 248, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(56, 189, 248, 0.07) 1px, transparent 1px);
+  background-size: 100% 100%, 24px 24px, 24px 24px;
+}
+
+/* Light mode circuit grid */
+.circuit-grid-light {
+  background-color: #0f172a;
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.12) 0%, transparent 80%),
+    linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 100% 100%, 24px 24px, 24px 24px;
+}
+
+/* Electric pulse animation */
+@keyframes electricFlow {
+  from {
+    stroke-dashoffset: 48;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.electric-flow {
+  animation: electricFlow var(--wire-speed, 1.2s) linear infinite;
+}
+
+/* Subtle glow pulse */
+@keyframes wireGlowPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 4px #00f0ff) drop-shadow(0 0 8px rgba(0, 240, 255, 0.5));
+  }
+  50% {
+    filter: drop-shadow(0 0 7px #00f0ff) drop-shadow(0 0 16px rgba(0, 240, 255, 0.8));
+  }
+}
+
+.wire-glowing {
+  animation: wireGlowPulse 2s ease-in-out infinite;
+}
+
+/* Bulb radiant glow animation */
+@keyframes bulbRadiance {
+  0%, 100% {
+    filter: drop-shadow(0 0 20px #fbbf24) drop-shadow(0 0 45px rgba(245, 158, 11, 0.6));
+  }
+  50% {
+    filter: drop-shadow(0 0 30px #f59e0b) drop-shadow(0 0 65px rgba(251, 191, 36, 0.85));
+  }
+}
+
+.bulb-radiant {
+  animation: bulbRadiance 2.5s ease-in-out infinite;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.3);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.5);
 }
